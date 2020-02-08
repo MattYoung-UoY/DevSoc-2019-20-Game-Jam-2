@@ -8,8 +8,8 @@ import toltr.game.map.TileProperty;
 
 public class Textures {
 
-	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark;
-	public static TileProperty grass, flowers, brick;
+	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark, buttonInactive;
+	public static TileProperty grass, flowers, brick, fencingHoriz, fencingVertL, fencingVertR, fencingTL, fencingTR, fencingBL, fencingBR;
 	public static Map<Character, Texture> font1Chars;
 	
 	public static void setup() {
@@ -19,9 +19,17 @@ public class Textures {
 		playerRight = new Texture("/res/textures/entities/player/right.png");
 		button = new Texture("/res/textures/guis/button.png");
 		buttonDark = new Texture("/res/textures/guis/buttonDark.png");
+		buttonInactive = new Texture("/res/textures/guis/buttonInactive.png");
 		grass = new TileProperty(new Texture("/res/textures/tiles/grass.png"), false);
 		flowers = new TileProperty(new Texture("/res/textures/tiles/flowers.png"), false);
 		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), true);
+		fencingHoriz = new TileProperty(new Texture("/res/textures/tiles/fencingHoriz.png"), true);
+		fencingVertL = new TileProperty(new Texture("/res/textures/tiles/fencingVertL.png"), true);
+		fencingVertR = new TileProperty(new Texture("/res/textures/tiles/fencingVertR.png"), true);
+		fencingTL = new TileProperty(new Texture("/res/textures/tiles/fencingTL.png"), true);
+		fencingTR = new TileProperty(new Texture("/res/textures/tiles/fencingTR.png"), true);
+		fencingBL = new TileProperty(new Texture("/res/textures/tiles/fencingBL.png"), true);
+		fencingBR = new TileProperty(new Texture("/res/textures/tiles/fencingBR.png"), true);
 		
 		font1Chars = new HashMap<Character, Texture>();
 		font1Chars.put('a', new Texture("/res/textures/fonts/font1/a.png"));

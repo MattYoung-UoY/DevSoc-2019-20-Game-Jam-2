@@ -3,22 +3,22 @@ package toltr.game.graphics.guis;
 import org.lwjgl.util.vector.Vector2f;
 
 import toltr.Main;
-import toltr.engine.gameStates.GameState;
-import toltr.engine.graphics.Texture;
 import toltr.engine.graphics.guis.GuiButton;
+import toltr.game.gameStates.GameStates;
+import toltr.game.graphics.Textures;
 
 public class StateChangeButton extends GuiButton{
 
-	GameState nextState;
+	private int nextStateIndex;
 	
-	public StateChangeButton(Vector2f position, float zLayer, Vector2f scale, Texture texture, GameState nextState, String text) {
-		super(position, zLayer, scale, texture, text);
-		this.nextState = nextState;
+	public StateChangeButton(Vector2f position, float zLayer, Vector2f scale, int nextStateIndex, String text, boolean active) {
+		super(position, zLayer, scale, Textures.button, text, active);
+		this.nextStateIndex = nextStateIndex;
 	}
 
 	@Override
 	public void buttonClicked() {
-		Main.changeGameState(nextState);
+		Main.changeGameState(GameStates.states[nextStateIndex]);
 	}
 
 }

@@ -12,15 +12,15 @@ import toltr.engine.graphics.text.Text;
 import toltr.game.entities.Player;
 import toltr.game.map.Map;
 
-public class PlayState extends GameState{
+public class GrasslandsState extends GameState{
 	
-	public PlayState(Player player, Map map, List<GuiComponent> guis, List<Entity> entities, List<Text> strings) {
+	public GrasslandsState(Player player, Map map, List<GuiComponent> guis, List<Entity> entities, List<Text> strings) {
 		super(player, map, guis, entities, strings);
 	}
 
 	@Override
 	public void update() {
-		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) Main.changeGameState(GameStates.menuState);
+		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) Main.changeGameState(GameStates.states[1]);
 	}
 
 	@Override

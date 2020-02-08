@@ -27,10 +27,6 @@ public abstract class Drawable {
 		position.x += x;
 		position.y += y;
 	}
-
-	public void setTexture(Texture texture) {
-		textureID = texture.getTextureID();
-	}
 	
 	public float getRotation() {
 		return rotation;
@@ -46,6 +42,10 @@ public abstract class Drawable {
 	
 	public int getTextureID() {
 		return textureID;
+	}
+	
+	public void setTexture(Texture texture) {
+		textureID = texture.getTextureID();
 	}
 
 }

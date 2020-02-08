@@ -27,13 +27,13 @@ public class Main {
 		System.out.println(Display.getWidth() + ", " + Display.getHeight() + ", " + Config.PERSPECTIVE_FACTOR);
 		
 		Render renderer = new Render();
-		camera = new Camera(new Vector2f(-Config.START_POSITION.x, -Config.START_POSITION.y));
+		camera = new Camera(new Vector2f(-Config.GRASSLANDS_START_POSITION.x, -Config.GRASSLANDS_START_POSITION.y));
 		renderer.setCamera(camera);
 
 		Textures.setup();
 		GameStates.setup();
 		
-		currentGameState = GameStates.menuState;
+		currentGameState = GameStates.states[0];
 
 		while (!Display.isCloseRequested() && running) {
 
