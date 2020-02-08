@@ -8,8 +8,8 @@ import toltr.engine.graphics.guis.GuiButton;
 
 public class ExitButton extends GuiButton{
 
-	public ExitButton(Vector2f position, int zLayer, Vector2f scale, Texture texture) {
-		super(position, zLayer, scale, texture);
+	public ExitButton(Vector2f position, float zLayer, Vector2f scale, Texture texture) {
+		super(position, zLayer, scale, texture, "Exit");
 	}
 
 	@Override

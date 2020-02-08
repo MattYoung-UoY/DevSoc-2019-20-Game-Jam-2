@@ -23,6 +23,9 @@ public class Main {
 	public static void main(String[] args) {
 		DisplayManager.createDisplay();
 
+		Config.PERSPECTIVE_FACTOR = (float) Display.getHeight() / (float) Display.getWidth();
+		System.out.println(Display.getWidth() + ", " + Display.getHeight() + ", " + Config.PERSPECTIVE_FACTOR);
+		
 		Render renderer = new Render();
 		camera = new Camera(new Vector2f(-Config.START_POSITION.x, -Config.START_POSITION.y));
 		renderer.setCamera(camera);

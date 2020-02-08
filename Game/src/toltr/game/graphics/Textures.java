@@ -7,7 +7,7 @@ import toltr.engine.graphics.Texture;
 
 public class Textures {
 
-	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark, snowGrass;
+	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark, grass, flowers, brick;
 	public static Map<Character, Texture> font1Chars;
 	
 	public static void setup() {
@@ -17,7 +17,9 @@ public class Textures {
 		playerRight = new Texture("/res/textures/entities/player/right.png");
 		button = new Texture("/res/textures/guis/button.png");
 		buttonDark = new Texture("/res/textures/guis/buttonDark.png");
-		snowGrass = new Texture("/res/textures/tiles/snowGrass.png");
+		grass = new Texture("/res/textures/tiles/grass.png");
+		flowers = new Texture("/res/textures/tiles/flowers.png");
+		brick = new Texture("/res/textures/tiles/brick.png");
 		
 		font1Chars = new HashMap<Character, Texture>();
 		font1Chars.put('a', new Texture("/res/textures/fonts/font1/a.png"));

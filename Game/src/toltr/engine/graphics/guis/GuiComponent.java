@@ -8,8 +8,8 @@ import toltr.engine.graphics.Texture;
 
 public abstract class GuiComponent extends Drawable{
 	
-	protected GuiComponent(Vector2f position, int zLayer, Vector2f scale, Texture texture) {
-		super(new Vector3f(position.x, position.y, -0.5f  * (1 / (float) zLayer)), 0f, scale, texture);
+	protected GuiComponent(Vector2f position, float zLayer, Vector2f scale, Texture texture) {
+		super(new Vector3f(position.x, position.y, zLayer), 0f, scale, texture);
 	}
 	
 	public abstract void update();

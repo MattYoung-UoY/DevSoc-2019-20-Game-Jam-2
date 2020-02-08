@@ -11,8 +11,8 @@ public class StateChangeButton extends GuiButton{
 
 	GameState nextState;
 	
-	public StateChangeButton(Vector2f position, int zLayer, Vector2f scale, Texture texture, GameState nextState) {
-		super(position, zLayer, scale, texture);
+	public StateChangeButton(Vector2f position, float zLayer, Vector2f scale, Texture texture, GameState nextState, String text) {
+		super(position, zLayer, scale, texture, text);
 		this.nextState = nextState;
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import toltr.engine.entities.Entity;
+import toltr.engine.graphics.guis.GuiButton;
 import toltr.engine.graphics.guis.GuiComponent;
 import toltr.engine.graphics.text.Text;
 import toltr.game.entities.Player;
@@ -18,14 +19,27 @@ public abstract class GameState {
 
 	public GameState(Player player, Map map, List<GuiComponent> guis, List<Entity> entities, List<Text> strings) {
 		this.map = map;
-		this.guis = guis;
 		if (entities != null)
 			this.entities = entities;
 		else
 			this.entities = new ArrayList<Entity>();
 		if (player != null)
 			this.entities.add(player);
-		this.strings = strings;
+		if(strings != null) {
+			this.strings = strings;
+		}else {
+			this.strings = new ArrayList<Text>();
+		}
+		if(guis != null) {
+			this.guis = guis;
+		}else {
+			this.guis = new ArrayList<>();
+		}
+		for(GuiComponent comp: this.guis) {
+			if(comp instanceof GuiButton) {
+				this.strings.add(((GuiButton) comp).getText());
+			}
+		}
 	}
 
 	protected abstract void update();

@@ -12,7 +12,7 @@ public class Player extends Entity{
 
 	public Player(Vector2f position, Texture forward, Texture backward, Texture left,
 			Texture right) {
-		super(position, 0f, new Vector2f(1f, 2f), forward, backward, left, right);
+		super(position, 0f, Config.PLAYER_SCALE, forward, backward, left, right);
 	}
 
 	@Override

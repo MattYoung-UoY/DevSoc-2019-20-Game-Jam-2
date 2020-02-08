@@ -11,7 +11,6 @@ public class MapTileShader extends ShaderProgram{
 
 	private int location_transformationMatrix;
 	private int location_viewMatrix;
-	private int location_peojectionMatrix;
 	
 	public MapTileShader() {
 		super(VERTEX_FILE, FRAGMENT_FILE);
@@ -27,7 +26,6 @@ public class MapTileShader extends ShaderProgram{
 	protected void getAllUniformLocations() {
 		location_transformationMatrix = super.getUniformLocation("transformationMatrix");
 		location_viewMatrix = super.getUniformLocation("viewMatrix");
-		location_peojectionMatrix = super.getUniformLocation("projectionMatrix");
 	}
 	
 	public void loadTransformationMatrix(Matrix4f matrix) {
@@ -36,10 +34,6 @@ public class MapTileShader extends ShaderProgram{
 
 	public void loadViewMatrix(Camera camera) {
 		super.loadMatrix(location_viewMatrix, camera.getViewMatrix());
-	}
-	
-	public void loadProjectionMatrix(Matrix4f matrix) {
-		super.loadMatrix(location_peojectionMatrix, matrix);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import toltr.Config;
 import toltr.engine.graphics.Texture;
 
 public abstract class Map{
@@ -15,7 +16,7 @@ public abstract class Map{
 		for(int i = 0; i < tileMap.length; i++) {
 			int[] subList = tileMap[i];
 			for(int j = 0; j < subList.length; j++) {
-				tileList.add(new MapTile(new Vector2f(j, -i), tileTextures[subList[j]]));
+				tileList.add(new MapTile(new Vector2f(j * Config.PERSPECTIVE_FACTOR, -i), tileTextures[subList[j]]));
 			}
 		}
 	}

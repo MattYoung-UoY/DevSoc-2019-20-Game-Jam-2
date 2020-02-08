@@ -3,13 +3,17 @@ package toltr.engine.graphics.guis;
 import org.lwjgl.util.vector.Vector2f;
 
 import toltr.engine.graphics.Texture;
+import toltr.engine.graphics.text.Text;
 import toltr.engine.input.MouseHandler;
 import toltr.game.graphics.Textures;
 
 public abstract class GuiButton extends GuiComponent{
 
-	public GuiButton(Vector2f position, int zLayer, Vector2f scale, Texture texture) {
+	Text buttonText;
+	
+	public GuiButton(Vector2f position, float zLayer, Vector2f scale, Texture texture, String text) {
 		super(position, zLayer, scale, texture);
+		buttonText = new Text(new Vector2f(position.x - 0.225f, position.y + (scale.y * 0.2f)), zLayer - 0.1f, (scale.y/2) - (scale.y * 0.2f), text);
 	}
 
 	public abstract void buttonClicked();
@@ -29,4 +33,8 @@ public abstract class GuiButton extends GuiComponent{
 		}else setTexture(Textures.button);
 	}
 
+	public Text getText() {
+		return buttonText;
+	}
+	
 }

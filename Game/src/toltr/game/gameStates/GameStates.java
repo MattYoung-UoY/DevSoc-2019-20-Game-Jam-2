@@ -26,7 +26,7 @@ public class GameStates {
 	public static void setup() {
 
 		strings = new ArrayList<Text>();
-		strings.add(new Text(new Vector2f(-0.4f, 0.1f), -0.4f, 0.1f, "deja vu"));
+		strings.add(new Text(new Vector2f(-0.3f, 0.1f), -0.4f, 0.1f, "TOLTR"));
 		
 		playState = new PlayState(new Player(Config.START_POSITION, Textures.playerForward, Textures.playerBackward,
 				Textures.playerLeft, Textures.playerRight), new MainMap(), null,
@@ -34,11 +34,11 @@ public class GameStates {
 
 		guis = new ArrayList<GuiComponent>();
 
-		exitButton = new ExitButton(new Vector2f(-0.25f, -0.6f), 1, new Vector2f(0.5f, 0.10f),
+		exitButton = new ExitButton(new Vector2f(-0.25f, -0.6f), -0.5f, new Vector2f(0.5f, 0.10f),
 				Textures.button);
 
-		playButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), 1, new Vector2f(0.5f, 0.10f),
-				Textures.button, playState);
+		playButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.25f, 0.05f),
+				Textures.button, playState, "Play");
 
 		guis.add(exitButton);
 		guis.add(playButton);

@@ -27,21 +27,12 @@ public class Render {
 	private TextShader textShader;
 	private Camera camera;
 
-	private Matrix4f projection;
-
 	public Render() {
 		quad = new Quad();
 		mtShader = new MapTileShader();
 		guiShader = new GuiShader();
 		entityShader = new EntityShader();
 		textShader = new TextShader();
-		projection = Maths.getProjectionMatrix();
-		mtShader.start();
-		mtShader.loadProjectionMatrix(projection);
-		mtShader.stop();
-		entityShader.start();
-		entityShader.loadProjectionMatrix(projection);
-		entityShader.stop();
 	}
 
 	public void setCamera(Camera camera) {
@@ -100,26 +91,24 @@ public class Render {
 	}
 
 	private void renderGuis(GameState gs) {
-		if (gs.getGuis() != null) {
-			guiShader.start();
-			GL30.glBindVertexArray(quad.getVaoID());
-			GL20.glEnableVertexAttribArray(0);
-			GL20.glEnableVertexAttribArray(1);
-			for (GuiComponent gui : gs.getGuis()) {
-				Matrix4f transformationMatrix = Maths.createTansformationMatrix(gui.getPosition(), gui.getRotation(),
-						gui.getSize());
-				guiShader.loadTransformationMatrix(transformationMatrix);
-				GL13.glActiveTexture(GL13.GL_TEXTURE0);
-				GL11.glBindTexture(GL11.GL_TEXTURE_2D, gui.getTextureID());
-				GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-			}
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
-			GL20.glDisableVertexAttribArray(0);
-			GL20.glDisableVertexAttribArray(1);
-			GL30.glBindVertexArray(0);
-			guiShader.stop();
+		guiShader.start();
+		GL30.glBindVertexArray(quad.getVaoID());
+		GL20.glEnableVertexAttribArray(0);
+		GL20.glEnableVertexAttribArray(1);
+		for (GuiComponent gui : gs.getGuis()) {
+			Matrix4f transformationMatrix = Maths.createTansformationMatrix(gui.getPosition(), gui.getRotation(),
+					gui.getSize());
+			guiShader.loadTransformationMatrix(transformationMatrix);
+			GL13.glActiveTexture(GL13.GL_TEXTURE0);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, gui.getTextureID());
+			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
 		}
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+		GL20.glDisableVertexAttribArray(0);
+		GL20.glDisableVertexAttribArray(1);
+		GL30.glBindVertexArray(0);
+		guiShader.stop();
 	}
 
 	private void renderEntities(GameState gs) {
@@ -145,28 +134,26 @@ public class Render {
 	}
 
 	private void renderText(GameState gs) {
-		if (gs.getStrings() != null) {
-			textShader.start();
-			GL30.glBindVertexArray(quad.getVaoID());
-			GL20.glEnableVertexAttribArray(0);
-			GL20.glEnableVertexAttribArray(1);
-			for (Text text : gs.getStrings()) {
-				for (TextCharacter character : text.getTextChars()) {
-					Matrix4f transformationMatrix = Maths.createTansformationMatrix(character.getPosition(),
-							character.getRotation(), character.getSize());
-					textShader.loadTransformationMatrix(transformationMatrix);
-					GL13.glActiveTexture(GL13.GL_TEXTURE0);
-					GL11.glBindTexture(GL11.GL_TEXTURE_2D, character.getTextureID());
-					GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-					GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-				}
+		textShader.start();
+		GL30.glBindVertexArray(quad.getVaoID());
+		GL20.glEnableVertexAttribArray(0);
+		GL20.glEnableVertexAttribArray(1);
+		for (Text text : gs.getStrings()) {
+			for (TextCharacter character : text.getTextChars()) {
+				Matrix4f transformationMatrix = Maths.createTansformationMatrix(character.getPosition(),
+						character.getRotation(), character.getSize());
+				textShader.loadTransformationMatrix(transformationMatrix);
+				GL13.glActiveTexture(GL13.GL_TEXTURE0);
+				GL11.glBindTexture(GL11.GL_TEXTURE_2D, character.getTextureID());
+				GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+				GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
 			}
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
-			GL20.glDisableVertexAttribArray(0);
-			GL20.glDisableVertexAttribArray(1);
-			GL30.glBindVertexArray(0);
-			textShader.stop();
 		}
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+		GL20.glDisableVertexAttribArray(0);
+		GL20.glDisableVertexAttribArray(1);
+		GL30.glBindVertexArray(0);
+		textShader.stop();
 	}
 
 }
