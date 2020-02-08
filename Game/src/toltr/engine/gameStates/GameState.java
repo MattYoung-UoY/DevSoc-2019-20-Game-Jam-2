@@ -44,6 +44,8 @@ public abstract class GameState {
 		}
 	}
 
+	public abstract void init();
+	
 	protected abstract void update();
 
 	public abstract void cleanUp();

@@ -23,4 +23,10 @@ public class MainMenuState extends GameState{
 	public void cleanUp() {
 	}
 
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

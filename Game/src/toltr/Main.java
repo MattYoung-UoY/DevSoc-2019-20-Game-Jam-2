@@ -66,6 +66,7 @@ public class Main {
 	public static void changeGameState(GameState nextState) {
 		currentGameState.cleanUp();
 		currentGameState = nextState;
+		currentGameState.init();
 	}
 
 	public static void closeGame() {

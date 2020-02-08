@@ -24,4 +24,9 @@ public class LevelSelectionState extends GameState{
 	public void cleanUp() {
 	}
 
+	@Override
+	public void init() {
+		GameStates.resetLevels();
+	}
+
 }
