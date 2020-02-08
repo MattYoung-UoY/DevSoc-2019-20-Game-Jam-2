@@ -49,8 +49,12 @@ public class DisplayManager {
 				displayMode = mode;
 
 		try {
-			Display.setDisplayMode(displayMode);
-			Display.setFullscreen(true);
+			if(!Config.DEBUG) {
+				Display.setDisplayMode(displayMode);
+			}else {
+				Display.setDisplayMode(new DisplayMode(1280, 720));
+			}
+			if(!Config.DEBUG) Display.setFullscreen(true);
 			Display.setVSyncEnabled(true);
 			Display.create(new PixelFormat(), attribs);
 		} catch (LWJGLException e) {

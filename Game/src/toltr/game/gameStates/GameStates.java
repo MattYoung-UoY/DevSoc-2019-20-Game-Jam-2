@@ -34,10 +34,10 @@ public class GameStates {
 
 		guis = new ArrayList<GuiComponent>();
 
-		exitButton = new ExitButton(new Vector2f(-0.25f, -0.6f), -0.5f, new Vector2f(0.5f, 0.10f),
+		exitButton = new ExitButton(new Vector2f(-0.25f, -0.6f), -0.5f, new Vector2f(0.5f, 0.1f),
 				Textures.button);
 
-		playButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.25f, 0.05f),
+		playButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.5f, 0.1f),
 				Textures.button, playState, "Play");
 
 		guis.add(exitButton);

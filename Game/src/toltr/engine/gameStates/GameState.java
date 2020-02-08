@@ -9,6 +9,7 @@ import toltr.engine.graphics.guis.GuiComponent;
 import toltr.engine.graphics.text.Text;
 import toltr.game.entities.Player;
 import toltr.game.map.Map;
+import toltr.game.map.MapTile;
 
 public abstract class GameState {
 
@@ -26,18 +27,18 @@ public abstract class GameState {
 			this.entities = new ArrayList<Entity>();
 		if (player != null)
 			this.player = player;
-		if(strings != null) {
+		if (strings != null) {
 			this.strings = strings;
-		}else {
+		} else {
 			this.strings = new ArrayList<Text>();
 		}
-		if(guis != null) {
+		if (guis != null) {
 			this.guis = guis;
-		}else {
+		} else {
 			this.guis = new ArrayList<>();
 		}
-		for(GuiComponent comp: this.guis) {
-			if(comp instanceof GuiButton) {
+		for (GuiComponent comp : this.guis) {
+			if (comp instanceof GuiButton) {
 				this.strings.add(((GuiButton) comp).getText());
 			}
 		}
@@ -54,9 +55,19 @@ public abstract class GameState {
 	}
 
 	private void updateEntities() {
-		if(player != null) player.move();
+		if (player != null) {
+			if (map != null) {
+				player.move(map.getTiles());
+			} else {
+				player.move(new ArrayList<MapTile>());
+			}
+		}
 		for (Entity entity : entities) {
-			entity.move();
+			if (map != null) {
+				entity.move(map.getTiles());
+			}else {
+				entity.move(new ArrayList<MapTile>());
+			}
 		}
 	}
 

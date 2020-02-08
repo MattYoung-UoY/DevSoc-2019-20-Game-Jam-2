@@ -21,7 +21,7 @@ public class Textures {
 		buttonDark = new Texture("/res/textures/guis/buttonDark.png");
 		grass = new TileProperty(new Texture("/res/textures/tiles/grass.png"), false);
 		flowers = new TileProperty(new Texture("/res/textures/tiles/flowers.png"), false);
-		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), false);
+		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), true);
 		
 		font1Chars = new HashMap<Character, Texture>();
 		font1Chars.put('a', new Texture("/res/textures/fonts/font1/a.png"));
