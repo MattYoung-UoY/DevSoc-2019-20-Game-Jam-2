@@ -12,6 +12,7 @@ import toltr.game.map.Map;
 
 public abstract class GameState {
 
+	private Player player;
 	private List<Entity> entities;
 	private Map map;
 	private List<GuiComponent> guis;
@@ -24,7 +25,7 @@ public abstract class GameState {
 		else
 			this.entities = new ArrayList<Entity>();
 		if (player != null)
-			this.entities.add(player);
+			this.player = player;
 		if(strings != null) {
 			this.strings = strings;
 		}else {
@@ -53,6 +54,7 @@ public abstract class GameState {
 	}
 
 	private void updateEntities() {
+		if(player != null) player.move();
 		for (Entity entity : entities) {
 			entity.move();
 		}
@@ -80,6 +82,10 @@ public abstract class GameState {
 
 	public List<Text> getStrings() {
 		return strings;
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 }

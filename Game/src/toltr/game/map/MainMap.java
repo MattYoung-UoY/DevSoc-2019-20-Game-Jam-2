@@ -1,11 +1,10 @@
 package toltr.game.map;
 
-import toltr.engine.graphics.Texture;
 import toltr.game.graphics.Textures;
 
 public class MainMap extends Map {
 
-	private static Texture[] tileTextures = { 
+	private static TileProperty[] tileTextures = { 
 			Textures.grass, Textures.flowers, Textures.brick};
 	
 	private static int[][] tileMap = { 

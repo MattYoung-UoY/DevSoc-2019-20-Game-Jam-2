@@ -16,6 +16,7 @@ import toltr.engine.shaders.EntityShader;
 import toltr.engine.shaders.GuiShader;
 import toltr.engine.shaders.MapTileShader;
 import toltr.engine.shaders.TextShader;
+import toltr.game.entities.Player;
 import toltr.game.map.MapTile;
 
 public class Render {
@@ -123,6 +124,16 @@ public class Render {
 			entityShader.loadTransformationMatrix(transformationMatrix);
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, entity.getTextureID());
+			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+		}
+		Player player = gs.getPlayer();
+		if(player != null){
+			Matrix4f transformationMatrix = Maths.createTansformationMatrix(player.getPosition(), player.getRotation(),
+					player.getSize());
+			entityShader.loadTransformationMatrix(transformationMatrix);
+			GL13.glActiveTexture(GL13.GL_TEXTURE0);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, player.getTextureID());
 			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 			GL11.glDrawElements(GL11.GL_TRIANGLES, quad.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
 		}
