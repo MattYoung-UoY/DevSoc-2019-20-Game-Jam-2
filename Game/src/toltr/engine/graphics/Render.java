@@ -97,7 +97,6 @@ public class Render {
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		for (GuiComponent gui : gs.getGuis()) {
-			if(gs.getPlayer() != null) if(gui == gs.getPlayer().getHealthBar().getFront()) System.out.println(gs.getPlayer().getHealthBar().getFront().getScale().x);
 			Matrix4f transformationMatrix = Maths.createTansformationMatrix(gui.getPosition(), gui.getRotation(),
 					gui.getScale());
 			guiShader.loadTransformationMatrix(transformationMatrix);

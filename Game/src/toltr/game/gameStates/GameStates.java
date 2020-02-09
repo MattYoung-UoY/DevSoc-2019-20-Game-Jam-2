@@ -9,8 +9,10 @@ import toltr.Config;
 import toltr.Main;
 import toltr.engine.gameStates.GameState;
 import toltr.engine.graphics.guis.GuiComponent;
+import toltr.engine.graphics.guis.GuiImage;
 import toltr.engine.graphics.text.Text;
 import toltr.game.entities.Player;
+import toltr.game.entities.PlayerStats;
 import toltr.game.graphics.Textures;
 import toltr.game.graphics.guis.ExitButton;
 import toltr.game.graphics.guis.StateChangeButton;
@@ -28,7 +30,7 @@ public class GameStates {
 	
 	public static void setup() {
 		mainMenuState();
-		levelSelectState();
+		characterState();
 		pauseState();
 		grasslandsState();
 	}
@@ -55,12 +57,19 @@ public class GameStates {
 		states[0] = new MainMenuState(null, null, guis, null, strings);
 	}
 	
-	private static void levelSelectState() {
+	private static void characterState() {
 		List<Text> strings = new ArrayList<Text>();
-		strings.add(new Text(new Vector2f(-0.5f, 0.8f), -0.4f, 0.05f, "Level Selection"));
+		strings.add(new Text(new Vector2f(-0.25f, 0.8f), -0.4f, 0.05f, "Character"));
 		strings.add(new Text(new Vector2f(0.96f, 0.3f), -0.4f, 0.025f, "Levels"));
+		strings.add(new Text(new Vector2f(-1.3f, 0.5f), -0.4f, 0.05f, "Character Stats"));
 		
 		List<GuiComponent> guis = new ArrayList<GuiComponent>();
+		GuiImage playerScreenBacking = new GuiImage(new Vector2f(-0.95f, -0.92f), -0.3f, new Vector2f(1f, 1.6f), Textures.playerScreenBacking);
+		guis.add(playerScreenBacking);
+		
+		GuiImage playerIcon = new GuiImage(new Vector2f(-0.9f, -0.2f), -0.4f, new Vector2f(0.15f, 0.375f), Textures.playerBackward);
+		guis.add(playerIcon);
+		
 		StateChangeButton grasslandButton = new StateChangeButton(new Vector2f(0.47f, 0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 3, "Grasslands", true);
 		guis.add(grasslandButton);
 		
@@ -73,7 +82,7 @@ public class GameStates {
 		StateChangeButton mainMenuButton = new StateChangeButton(new Vector2f(0.72f, -0.95f), -0.5f, new Vector2f(0.25f, 0.1f), 0, "Main menu", true);
 		guis.add(mainMenuButton);
 		
-		states[1] = new LevelSelectionState(null, null, guis, null, strings);
+		states[1] = new CharacterState(null, null, guis, null, strings);
 	}
 
 	private static void pauseState() {
@@ -93,9 +102,17 @@ public class GameStates {
 	}
 	
 	private static void grasslandsState() {
+		List<GuiComponent> guis = new ArrayList<GuiComponent>();
+		
+		GuiImage playerIcon = new GuiImage(new Vector2f(-0.97f, 0.69f), -0.4f, new Vector2f(0.1f, 0.25f), Textures.playerBackward);
+		guis.add(playerIcon);
+		
+		GuiImage playerInfoBacking = new GuiImage(new Vector2f(-0.98f, 0.66f), -0.3f, new Vector2f(0.45f, 0.31f), Textures.playerInfoBacking);
+		guis.add(playerInfoBacking);
+		
 		Player player = new Player(Config.GRASSLANDS_START_POSITION, Textures.playerForward, Textures.playerBackward,
-				Textures.playerLeft, Textures.playerRight, 500);
-		states[3] = new GrasslandsState(player, new GrasslandsMap(), null,
+				Textures.playerLeft, Textures.playerRight, PlayerStats.getHealth());
+		states[3] = new GrasslandsState(player, new GrasslandsMap(), guis,
 				null, null);
 	}
 	

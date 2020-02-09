@@ -26,14 +26,13 @@ public class Player extends LivingEntity {
 		this.backward = backward;
 		this.left = left;
 		this.right = right;
-		healthBar = new ProgressBar(Textures.buttonDark, Textures.healthBarFront, new Vector2f(-0.035f, 0.25f), new Vector2f(0.15f, 0.05f));
+		healthBar = new ProgressBar(Textures.buttonDark, Textures.healthBarFront, new Vector2f(-0.835f, 0.87f), new Vector2f(0.275f, 0.05f));
 	}
 
 	@Override
 	public void damage(int damage) {
 		super.damage(damage);
 		healthBar.setProgress((float) getHealth() / (float) getMaxHealth());
-		System.out.println("dmg");
 	}
 	
 	@Override

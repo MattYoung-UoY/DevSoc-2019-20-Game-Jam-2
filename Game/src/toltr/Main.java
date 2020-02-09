@@ -9,6 +9,7 @@ import toltr.engine.graphics.DisplayManager;
 import toltr.engine.graphics.Loader;
 import toltr.engine.graphics.Render;
 import toltr.engine.input.MouseHandler;
+import toltr.game.entities.PlayerStats;
 import toltr.game.gameStates.GameStates;
 import toltr.game.graphics.Textures;
 
@@ -30,6 +31,7 @@ public class Main {
 		camera = new Camera(new Vector2f(-Config.GRASSLANDS_START_POSITION.x, -Config.GRASSLANDS_START_POSITION.y));
 		renderer.setCamera(camera);
 
+		PlayerStats.setup(10);
 		Textures.setup();
 		GameStates.setup();
 		
