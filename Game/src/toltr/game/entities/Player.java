@@ -10,6 +10,7 @@ import toltr.Config;
 import toltr.Main;
 import toltr.engine.graphics.Texture;
 import toltr.engine.maths.Maths;
+import toltr.game.gameStates.GameStates;
 import toltr.game.graphics.Textures;
 import toltr.game.graphics.guis.ProgressBar;
 import toltr.game.map.MapTile;
@@ -38,6 +39,7 @@ public class Player extends LivingEntity {
 	public void damage(int damage) {
 		super.damage(damage);
 		healthBar.setProgress((float) getHealth() / (float) getMaxHealth());
+		if(getHealth() == 0) Main.changeGameState(GameStates.states[3]);
 	}
 	
 	@Override

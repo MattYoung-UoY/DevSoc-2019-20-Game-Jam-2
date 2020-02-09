@@ -24,14 +24,16 @@ public class GameStates {
 	 * 0-Main Menu
 	 * 1-Level Selection Screen
 	 * 2-Pause Screen
-	 * 3-Grasslands
+	 * 3-Death Screen
+	 * 4-Grasslands
 	 */
-	public static GameState[] states = new GameState[4];
+	public static GameState[] states = new GameState[5];
 	
 	public static void setup() {
 		mainMenuState();
 		characterState();
 		pauseState();
+		deathState();
 		grasslandsState();
 	}
 	
@@ -70,13 +72,13 @@ public class GameStates {
 		GuiImage playerIcon = new GuiImage(new Vector2f(-0.9f, -0.2f), -0.4f, new Vector2f(0.15f, 0.375f), Textures.playerBackward);
 		guis.add(playerIcon);
 		
-		StateChangeButton grasslandButton = new StateChangeButton(new Vector2f(0.47f, 0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 3, "Grasslands", true);
+		StateChangeButton grasslandButton = new StateChangeButton(new Vector2f(0.47f, 0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 4, "Grasslands", true);
 		guis.add(grasslandButton);
 		
-		StateChangeButton desertButton = new StateChangeButton(new Vector2f(0.47f, 0f), -0.5f, new Vector2f(0.5f, 0.1f), 3, "Desert", false);
+		StateChangeButton desertButton = new StateChangeButton(new Vector2f(0.47f, 0f), -0.5f, new Vector2f(0.5f, 0.1f), 4, "Desert", false);
 		guis.add(desertButton);
 		
-		StateChangeButton volcanoButton = new StateChangeButton(new Vector2f(0.47f, -0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 3, "Volcano", false);
+		StateChangeButton volcanoButton = new StateChangeButton(new Vector2f(0.47f, -0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 4, "Volcano", false);
 		guis.add(volcanoButton);
 		
 		StateChangeButton mainMenuButton = new StateChangeButton(new Vector2f(0.72f, -0.95f), -0.5f, new Vector2f(0.25f, 0.1f), 0, "Main menu", true);
@@ -92,13 +94,25 @@ public class GameStates {
 		
 		List<GuiComponent> guis = new ArrayList<GuiComponent>();
 		
-		StateChangeButton resumeButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.5f, 0.1f), 3, "Resume", true);
+		StateChangeButton resumeButton = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.5f, 0.1f), 4, "Resume", true);
 		guis.add(resumeButton);
 		
 		StateChangeButton quitLevelButton = new StateChangeButton(new Vector2f(-0.25f, -0.5f), -0.5f, new Vector2f(0.5f, 0.1f), 1, "Quit Level", true);
 		guis.add(quitLevelButton);
 		
 		states[2] = new PauseState(null, null, guis, null, strings);
+	}
+	
+	private static void deathState() {
+		List<Text> strings = new ArrayList<Text>();
+		strings.add(new Text(new Vector2f(-0.38f, 0.3f), -0.4f, 0.05f, "You have died"));
+
+		List<GuiComponent> guis = new ArrayList<GuiComponent>();
+		
+		StateChangeButton characterScreen = new StateChangeButton(new Vector2f(-0.25f, -0.3f), -0.5f, new Vector2f(0.5f, 0.1f), 1, "Character Screen", true);
+		guis.add(characterScreen);
+		
+		states[3] = new DeathState(null, null, guis, null, strings);
 	}
 	
 	private static void grasslandsState() {
@@ -112,7 +126,7 @@ public class GameStates {
 		
 		Player player = new Player(Config.GRASSLANDS_START_POSITION, Textures.playerForward, Textures.playerBackward,
 				Textures.playerLeft, Textures.playerRight, PlayerStats.getHealth());
-		states[3] = new GrasslandsState(player, new GrasslandsMap(), guis,
+		states[4] = new GrasslandsState(player, new GrasslandsMap(), guis,
 				null, null);
 	}
 	
