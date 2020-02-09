@@ -69,7 +69,7 @@ public class GameStates {
 		GuiImage playerScreenBacking = new GuiImage(new Vector2f(-0.95f, -0.92f), -0.3f, new Vector2f(1f, 1.6f), Textures.playerScreenBacking);
 		guis.add(playerScreenBacking);
 		
-		GuiImage playerIcon = new GuiImage(new Vector2f(-0.9f, -0.2f), -0.4f, new Vector2f(0.15f, 0.375f), Textures.playerBackward);
+		GuiImage playerIcon = new GuiImage(new Vector2f(-0.9f, -0.5f), -0.4f, new Vector2f(0.15f, 0.4f), Textures.playerBackward);
 		guis.add(playerIcon);
 		
 		StateChangeButton grasslandButton = new StateChangeButton(new Vector2f(0.47f, 0.15f), -0.5f, new Vector2f(0.5f, 0.1f), 4, "Grasslands", true);

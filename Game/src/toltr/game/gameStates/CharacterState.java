@@ -14,13 +14,19 @@ import toltr.game.map.Map;
 
 public class CharacterState extends GameState{
 	
-	private Text healthText;
+	private Text healthText, goldText, levelText, expText;
 
 	public CharacterState(Player player, Map map, List<GuiComponent> guis, List<Entity> entities,
 			List<Text> strings) {
 		super(player, map, guis, entities, strings);
-		healthText = new Text(new Vector2f(-1.8f, 0.3f), -0.4f, 0.03f, "Health ");
+		healthText = new Text(new Vector2f(-1.8f, 0.1f), -0.4f, 0.03f, "");
+		levelText = new Text(new Vector2f(-1.8f, 0.3f), -0.4f, 0.03f, "");
+		expText = new Text(new Vector2f(-1.8f, 0.2f), -0.4f, 0.03f, "");
+		goldText = new Text(new Vector2f(-1.8f, 0f), -0.4f, 0.03f, "");
 		strings.add(healthText);
+		strings.add(levelText);
+		strings.add(expText);
+		strings.add(goldText);
 	}
 
 	@Override
@@ -35,6 +41,9 @@ public class CharacterState extends GameState{
 	public void init() {
 		GameStates.resetLevels();
 		healthText.changeText("Health  " + PlayerStats.getHealth() + "HP");
+		levelText.changeText("Level  " + PlayerStats.getLevel());
+		expText.changeText("Exp  " + PlayerStats.getExp());
+		goldText.changeText(PlayerStats.getGold() + " gold");
 	}
 
 }

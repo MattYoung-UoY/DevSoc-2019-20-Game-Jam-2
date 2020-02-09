@@ -2,7 +2,7 @@ package toltr.game.entities;
 
 public class PlayerStats {
 
-	private static int health = -1;
+	private static int health = -1, gold = 0, exp = 0, level = 1;
 	
 	public static void setup(int initHealth) {
 		if (initHealth <= 0) throw new IllegalArgumentException("Init Health cannot be <= 0");
@@ -19,4 +19,15 @@ public class PlayerStats {
 		return health;
 	}
 	
+	public static int getGold() {
+		return gold;
+	}
+	
+	public static int getExp() {
+		return exp;
+	}
+	
+	public static int getLevel() {
+		return level;
+	}
 }
