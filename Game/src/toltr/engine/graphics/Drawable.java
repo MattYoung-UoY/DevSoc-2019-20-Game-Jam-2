@@ -1,12 +1,11 @@
 package toltr.engine.graphics;
 
-import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 public abstract class Drawable {
 	
-	private Vector2f size, scale;
+	private Vector2f scale;
 	private Vector3f position;
 	public float rotation;
 	private int textureID;
@@ -14,7 +13,6 @@ public abstract class Drawable {
 	protected Drawable(Vector3f position, float rotation,  Vector2f size, Texture texture) {
 		this.position = position;
 		this.rotation = rotation;
-		this.size = new Vector2f(size.x * Display.getWidth(), size.y * Display.getWidth());
 		this.scale = size;
 		this.textureID = texture.getTextureID();
 	}
@@ -32,10 +30,6 @@ public abstract class Drawable {
 		return rotation;
 	}
 
-	public Vector2f getSize() {
-		return size;
-	}
-
 	public Vector2f getScale() {
 		return scale;
 	}
@@ -48,4 +42,8 @@ public abstract class Drawable {
 		textureID = texture.getTextureID();
 	}
 
+	public void setWidth(float width) {
+		scale.x = width;
+	}
+	
 }

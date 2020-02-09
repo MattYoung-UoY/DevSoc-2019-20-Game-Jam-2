@@ -21,17 +21,18 @@ public abstract class GameState {
 
 	public GameState(Player player, Map map, List<GuiComponent> guis, List<Entity> entities, List<Text> strings) {
 		this.map = map;
+		
 		if (entities != null)
 			this.entities = entities;
 		else
 			this.entities = new ArrayList<Entity>();
-		if (player != null)
-			this.player = player;
+		
 		if (strings != null) {
 			this.strings = strings;
 		} else {
 			this.strings = new ArrayList<Text>();
 		}
+		
 		if (guis != null) {
 			this.guis = guis;
 		} else {
@@ -41,6 +42,12 @@ public abstract class GameState {
 			if (comp instanceof GuiButton) {
 				this.strings.add(((GuiButton) comp).getText());
 			}
+		}
+		
+		if (player != null) {
+			this.player = player;
+			this.guis.add(player.getHealthBar().getFront());
+			this.guis.add(player.getHealthBar().getBack());
 		}
 	}
 

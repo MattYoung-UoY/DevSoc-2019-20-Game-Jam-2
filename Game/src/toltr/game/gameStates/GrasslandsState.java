@@ -21,6 +21,7 @@ public class GrasslandsState extends GameState{
 	@Override
 	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) Main.changeGameState(GameStates.states[2]);
+		getPlayer().damage(1);
 	}
 
 	@Override

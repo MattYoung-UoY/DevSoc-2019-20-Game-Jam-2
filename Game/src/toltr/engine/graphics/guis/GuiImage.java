@@ -6,7 +6,7 @@ import toltr.engine.graphics.Texture;
 
 public class GuiImage extends GuiComponent{
 
-	public GuiImage(Vector2f position, int zLayer, Vector2f scale, Texture texture) {
+	public GuiImage(Vector2f position, float zLayer, Vector2f scale, Texture texture) {
 		super(position, zLayer, scale, texture);
 	}
 

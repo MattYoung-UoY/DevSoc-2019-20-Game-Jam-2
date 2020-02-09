@@ -8,17 +8,40 @@ import org.lwjgl.util.vector.Vector2f;
 
 import toltr.Config;
 import toltr.Main;
-import toltr.engine.entities.Entity;
 import toltr.engine.graphics.Texture;
 import toltr.engine.maths.Maths;
+import toltr.game.graphics.Textures;
+import toltr.game.graphics.guis.ProgressBar;
 import toltr.game.map.MapTile;
 
-public class Player extends Entity {
+public class Player extends LivingEntity {
 
-	public Player(Vector2f position, Texture forward, Texture backward, Texture left, Texture right) {
-		super(position, 0f, Config.PLAYER_SCALE, forward, backward, left, right);
+	protected Texture forward, backward, left, right;
+	
+	private ProgressBar healthBar;
+	
+	public Player(Vector2f position, Texture forward, Texture backward, Texture left, Texture right, int maxHealth) {
+		super(position, 0f, Config.PLAYER_SCALE, backward, maxHealth);
+		this.forward = forward;
+		this.backward = backward;
+		this.left = left;
+		this.right = right;
+		healthBar = new ProgressBar(Textures.buttonDark, Textures.healthBarFront, new Vector2f(-0.035f, 0.25f), new Vector2f(0.15f, 0.05f));
 	}
 
+	@Override
+	public void damage(int damage) {
+		super.damage(damage);
+		healthBar.setProgress((float) getHealth() / (float) getMaxHealth());
+		System.out.println("dmg");
+	}
+	
+	@Override
+	public void heal(int health) {
+		super.heal(health);
+		healthBar.setProgress((float) getHealth() / (float) getMaxHealth());
+	}
+	
 	@Override
 	public void move(List<MapTile> mapTiles) {
 		Vector2f direction = new Vector2f(0, 0);
@@ -47,6 +70,7 @@ public class Player extends Entity {
 
 		direction.x *= Config.MOVE_SPEED;
 		direction.y *= Config.MOVE_SPEED;
+		direction.x *= Config.PERSPECTIVE_FACTOR;
 
 		Vector2f nextPos = new Vector2f(this.getPosition().x, this.getPosition().y);
 		nextPos.x += direction.x;
@@ -75,5 +99,8 @@ public class Player extends Entity {
 			Main.increaseCameraPosition(new Vector2f(-direction.x, -direction.y));
 		}
 	}
-	
+
+	public ProgressBar getHealthBar() {
+		return healthBar;
+	}
 }

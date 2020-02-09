@@ -76,7 +76,7 @@ public class Render {
 			GL20.glEnableVertexAttribArray(1);
 			for (MapTile tile : gs.getMap().getTiles()) {
 				Matrix4f transformationMatrix = Maths.createTansformationMatrix(tile.getPosition(), tile.getRotation(),
-						tile.getSize());
+						tile.getScale());
 				mtShader.loadTransformationMatrix(transformationMatrix);
 				GL13.glActiveTexture(GL13.GL_TEXTURE0);
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, tile.getTextureID());
@@ -97,8 +97,9 @@ public class Render {
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		for (GuiComponent gui : gs.getGuis()) {
+			if(gs.getPlayer() != null) if(gui == gs.getPlayer().getHealthBar().getFront()) System.out.println(gs.getPlayer().getHealthBar().getFront().getScale().x);
 			Matrix4f transformationMatrix = Maths.createTansformationMatrix(gui.getPosition(), gui.getRotation(),
-					gui.getSize());
+					gui.getScale());
 			guiShader.loadTransformationMatrix(transformationMatrix);
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, gui.getTextureID());
@@ -120,7 +121,7 @@ public class Render {
 		GL20.glEnableVertexAttribArray(1);
 		for (Entity entity : gs.getEntities()) {
 			Matrix4f transformationMatrix = Maths.createTansformationMatrix(entity.getPosition(), entity.getRotation(),
-					entity.getSize());
+					entity.getScale());
 			entityShader.loadTransformationMatrix(transformationMatrix);
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, entity.getTextureID());
@@ -130,7 +131,7 @@ public class Render {
 		Player player = gs.getPlayer();
 		if(player != null){
 			Matrix4f transformationMatrix = Maths.createTansformationMatrix(player.getPosition(), player.getRotation(),
-					player.getSize());
+					player.getScale());
 			entityShader.loadTransformationMatrix(transformationMatrix);
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, player.getTextureID());
@@ -152,7 +153,7 @@ public class Render {
 		for (Text text : gs.getStrings()) {
 			for (TextCharacter character : text.getTextChars()) {
 				Matrix4f transformationMatrix = Maths.createTansformationMatrix(character.getPosition(),
-						character.getRotation(), character.getSize());
+						character.getRotation(), character.getScale());
 				textShader.loadTransformationMatrix(transformationMatrix);
 				GL13.glActiveTexture(GL13.GL_TEXTURE0);
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, character.getTextureID());

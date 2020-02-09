@@ -8,7 +8,7 @@ import toltr.game.map.TileProperty;
 
 public class Textures {
 
-	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark, buttonInactive;
+	public static Texture playerForward, playerBackward, playerLeft, playerRight, button, buttonDark, buttonInactive, healthBarFront;
 	public static TileProperty grass, flowers, brick, fencingHoriz, fencingVertL, fencingVertR, fencingTL, fencingTR, fencingBL, fencingBR;
 	public static Map<Character, Texture> font1Chars;
 	
@@ -20,6 +20,8 @@ public class Textures {
 		button = new Texture("/res/textures/guis/button.png");
 		buttonDark = new Texture("/res/textures/guis/buttonDark.png");
 		buttonInactive = new Texture("/res/textures/guis/buttonInactive.png");
+		healthBarFront = new Texture("/res/textures/guis/healthBarFront.png");
+		
 		grass = new TileProperty(new Texture("/res/textures/tiles/grass.png"), false);
 		flowers = new TileProperty(new Texture("/res/textures/tiles/flowers.png"), false);
 		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), true);

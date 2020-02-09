@@ -93,8 +93,9 @@ public class GameStates {
 	}
 	
 	private static void grasslandsState() {
-		states[3] = new GrasslandsState(new Player(Config.GRASSLANDS_START_POSITION, Textures.playerForward, Textures.playerBackward,
-				Textures.playerLeft, Textures.playerRight), new GrasslandsMap(), null,
+		Player player = new Player(Config.GRASSLANDS_START_POSITION, Textures.playerForward, Textures.playerBackward,
+				Textures.playerLeft, Textures.playerRight, 500);
+		states[3] = new GrasslandsState(player, new GrasslandsMap(), null,
 				null, null);
 	}
 	

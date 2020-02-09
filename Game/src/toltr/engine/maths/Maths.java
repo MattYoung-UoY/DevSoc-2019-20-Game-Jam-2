@@ -1,6 +1,5 @@
 package toltr.engine.maths;
 
-import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -12,7 +11,7 @@ public class Maths {
 		matrix.setIdentity();
 		Matrix4f.translate(translation, matrix, matrix);
 		Matrix4f.rotate((float) Math.toRadians(rotation), new Vector3f(0, 0, 1), matrix, matrix);
-		Matrix4f.scale(new Vector3f(scale.x / Display.getWidth(), scale.y / Display.getWidth(), 1), matrix, matrix);
+		Matrix4f.scale(new Vector3f(scale.x, scale.y, 1), matrix, matrix);
 		return matrix;
 	}
 
