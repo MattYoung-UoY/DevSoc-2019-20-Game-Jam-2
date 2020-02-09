@@ -24,16 +24,16 @@ public class Textures {
 		playerInfoBacking = new Texture("/res/textures/guis/playerInfoBacking.png");
 		playerScreenBacking = new Texture("/res/textures/guis/playerScreenBackground.png");
 		
-		grass = new TileProperty(new Texture("/res/textures/tiles/grass.png"), false);
-		flowers = new TileProperty(new Texture("/res/textures/tiles/flowers.png"), false);
-		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), true);
-		fencingHoriz = new TileProperty(new Texture("/res/textures/tiles/fencingHoriz.png"), true);
-		fencingVertL = new TileProperty(new Texture("/res/textures/tiles/fencingVertL.png"), true);
-		fencingVertR = new TileProperty(new Texture("/res/textures/tiles/fencingVertR.png"), true);
-		fencingTL = new TileProperty(new Texture("/res/textures/tiles/fencingTL.png"), true);
-		fencingTR = new TileProperty(new Texture("/res/textures/tiles/fencingTR.png"), true);
-		fencingBL = new TileProperty(new Texture("/res/textures/tiles/fencingBL.png"), true);
-		fencingBR = new TileProperty(new Texture("/res/textures/tiles/fencingBR.png"), true);
+		grass = new TileProperty(new Texture("/res/textures/tiles/grass.png"), false, 0);
+		flowers = new TileProperty(new Texture("/res/textures/tiles/flowers.png"), false, 1);
+		brick = new TileProperty(new Texture("/res/textures/tiles/brick.png"), true, 0);
+		fencingHoriz = new TileProperty(new Texture("/res/textures/tiles/fencingHoriz.png"), true, 0);
+		fencingVertL = new TileProperty(new Texture("/res/textures/tiles/fencingVertL.png"), true, 0);
+		fencingVertR = new TileProperty(new Texture("/res/textures/tiles/fencingVertR.png"), true, 0);
+		fencingTL = new TileProperty(new Texture("/res/textures/tiles/fencingTL.png"), true, 0);
+		fencingTR = new TileProperty(new Texture("/res/textures/tiles/fencingTR.png"), true, 0);
+		fencingBL = new TileProperty(new Texture("/res/textures/tiles/fencingBL.png"), true, 0);
+		fencingBR = new TileProperty(new Texture("/res/textures/tiles/fencingBR.png"), true, 0);
 		
 		font1Chars = new HashMap<Character, Texture>();
 		font1Chars.put('a', new Texture("/res/textures/fonts/font1/a.png"));

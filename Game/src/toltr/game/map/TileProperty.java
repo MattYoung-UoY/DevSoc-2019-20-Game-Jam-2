@@ -6,12 +6,18 @@ public class TileProperty {
 
 	private Texture texture;
 	private boolean collision;
+	private int damage;
 	
-	public TileProperty(Texture texture, boolean collision) {
+	public TileProperty(Texture texture, boolean collision, int damage) {
 		this.texture = texture;
 		this.collision = collision;
+		this.damage = damage;
 	}
 
+	public int getDamage() {
+		return damage;
+	}
+	
 	public Texture getTexture() {
 		return texture;
 	}

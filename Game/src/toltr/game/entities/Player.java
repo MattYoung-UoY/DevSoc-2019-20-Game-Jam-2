@@ -20,6 +20,10 @@ public class Player extends LivingEntity {
 	
 	private ProgressBar healthBar;
 	
+	private boolean canDamage = true;
+	
+	private long lastDamage;
+	
 	public Player(Vector2f position, Texture forward, Texture backward, Texture left, Texture right, int maxHealth) {
 		super(position, 0f, Config.PLAYER_SCALE, backward, maxHealth);
 		this.forward = forward;
@@ -27,6 +31,7 @@ public class Player extends LivingEntity {
 		this.left = left;
 		this.right = right;
 		healthBar = new ProgressBar(Textures.buttonDark, Textures.healthBarFront, new Vector2f(-0.835f, 0.87f), new Vector2f(0.275f, 0.05f));
+		lastDamage = System.currentTimeMillis();
 	}
 
 	@Override
@@ -39,6 +44,29 @@ public class Player extends LivingEntity {
 	public void heal(int health) {
 		super.heal(health);
 		healthBar.setProgress((float) getHealth() / (float) getMaxHealth());
+	}
+
+	@Override
+	public void update(List<MapTile> mapTiles) {
+		if(canDamage) {
+			List<MapTile> toTest = new ArrayList<MapTile>();
+			for(MapTile tile: mapTiles) {
+				if(tile.getTile().getDamage() > 0) {
+					if(Maths.distance(new Vector2f(tile.getPosition().x, tile.getPosition().y), new Vector2f(getPosition().x, getPosition().y)) < 5f) {
+						toTest.add(tile);
+					}
+				}
+			}
+			for(MapTile tile: toTest) {
+				if(Maths.isColliding(new Vector2f(tile.getPosition().x, tile.getPosition().y), tile.getScale(), new Vector2f(getPosition().x, getPosition().y), getScale())) {
+					damage(tile.getTile().getDamage());
+					canDamage = false;
+					lastDamage = System.currentTimeMillis();
+				}
+			}
+		}else {
+			if(System.currentTimeMillis() - lastDamage > 1000) canDamage = true;
+		}
 	}
 	
 	@Override

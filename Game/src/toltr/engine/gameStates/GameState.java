@@ -66,15 +66,19 @@ public abstract class GameState {
 	private void updateEntities() {
 		if (player != null) {
 			if (map != null) {
+				player.update(map.getTiles());
 				player.move(map.getTiles());
 			} else {
+				player.update(new ArrayList<MapTile>());
 				player.move(new ArrayList<MapTile>());
 			}
 		}
 		for (Entity entity : entities) {
 			if (map != null) {
+				entity.update(map.getTiles());
 				entity.move(map.getTiles());
 			}else {
+				entity.update(new ArrayList<MapTile>());
 				entity.move(new ArrayList<MapTile>());
 			}
 		}
